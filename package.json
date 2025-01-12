@@ -1,7 +1,7 @@
 {
   "type": "commonjs",
   "name": "eth-fetch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A JavaScript interface for fetching data from Ethereum nodes and smart contracts.",
   "main": "src/index.js",
   "homepage": "https://github.com/jacobhaap/eth-fetch/#readme",

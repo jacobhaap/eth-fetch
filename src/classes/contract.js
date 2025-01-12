@@ -26,6 +26,17 @@ class Contract {
                 return this._callFunction(functionName, args);
             };
         }
+
+        this.abi = {
+            encodeFunctionCall: this.encodeFunctionCall.bind(this),
+            decodeFunctionResponse: this.decodeFunctionResponse.bind(this),
+            encodeParams: this.encodeParams.bind(this),
+            decodeParams: this.decodeParams.bind(this),
+            encodeEventTopics: this.encodeEventTopics.bind(this),
+            decodeEventLog: this.decodeEventLog.bind(this),
+            getFunctionSelector: this.getFunctionSelector.bind(this),
+            parseAbi: this.parseAbi.bind(this),
+        }
     }
 
     async _callFunction(functionName, args) {
@@ -45,6 +56,38 @@ class Contract {
         const result = await this.provider.request(payload);
         
         return this.abiHandler.decodeFunctionResponse(functionName, result);
+    }
+
+    encodeFunctionCall(functionName, params) {
+        return this.abiHandler.encodeFunctionCall(functionName, params);
+    }
+
+    decodeFunctionResponse(functionName, data) {
+        return this.abiHandler.decodeFunctionResponse(functionName, data);
+    }
+
+    encodeParams(types, values) {
+        return this.abiHandler.encodeParams(types, values);
+    }
+
+    decodeParams(types, data) {
+        return this.abiHandler.decodeParams(types, data);
+    }
+
+    encodeEventTopics(eventName, params) {
+        return this.abiHandler.encodeEventTopics(eventName, params);
+    }
+
+    decodeEventLog(eventName, log) {
+        return this.abiHandler.decodeEventLog(eventName, log);
+    }
+
+    getFunctionSelector(functionName) {
+        return this.abiHandler.getFunctionSelector(functionName);
+    }
+
+    parseAbi() {
+        return this.abiHandler.parseAbi();
     }
 }
 

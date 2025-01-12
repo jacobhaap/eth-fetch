@@ -19,6 +19,25 @@ ethFetch.Contract(provider, address, abi);
 ```
 Creating a contract interface is supported by the `ethFetch.Contract();` method, and requires a `provider`, `address`, and `abi` parameter be provided. These should correspond to a provider instance (such as *ethFetch.RpcProvider*), a the contract's address, and the contract's ABI. The ABI encoding/decoding is supported by [@ethersproject/abi](https://www.npmjs.com/package/@ethersproject/abi), therefore the ABI supplied must match an [ABI Format](https://docs.ethers.org/v5/api/utils/abi/formats/) supported by Ethers.
 
+### Contract ABI Methods
+A number of methods is made available via the contract interface for Ethereum smart contract interactions. This includes handling for encoding and decoding of function calls, responses, event topics, and logs. This also includes extracting metadata about functions and events, and ABI parsing. This functionality is supported by **@ethersproject/abi**.
+
+```js
+.abi.encodeFunctionCall(functionName, params);
+.abi.decodeFunctionResponse(functionName, data);
+
+.abi.encodeParams(types, values);
+.abi.decodeParams(types, data);
+
+.abi.encodeEventTopics(eventName, params);
+.abi.decodeEventLog(eventName, log);
+
+.abi.getFunctionSelector(functionName);
+
+.abi.parseAbi();
+
+```
+
 ## Example Use
 In this first example, a provider instance is created, and used to fetch the current block number.
 ```js
